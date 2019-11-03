@@ -302,7 +302,7 @@ class BluetoothTerminal {
   _connectDeviceAndCacheCharacteristic(device) {
     // Check remembered characteristic.
     if (device.gatt.connected && this._characteristic && this._notifyCharacteristic) {
-      return Promise.resolve(this._characteristic);
+      return Promise.resolve(this._notifyCharacteristic);
     }
 
     this._log('Connecting to GATT server...');
