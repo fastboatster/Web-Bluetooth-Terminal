@@ -207,7 +207,7 @@ class BluetoothTerminal {
           reject(new Error('Device has been disconnected'));
         }
 
-        // Write chunk to the characteristic and resolve the promise.
+        // Write chunk to write characteristic and resolve the promise.
         this._writeToCharacteristic(this._characteristic, chunks[i]).
             then(resolve).
             catch(reject);
@@ -418,8 +418,14 @@ class BluetoothTerminal {
    * @private
    */
   _writeToCharacteristic(characteristic, data) {
-    return characteristic.writeValue(new TextEncoder().encode(data));
+    var dta = [];
+    for (var i = 0; i < data.length; i++) {
+      dta.push(data.charCodeAt(i));
+    };
+    // return characteristic.writeValue(new TextEncoder().encode(data));
+    return characteristic.writeValue(dta);
   }
+
 
   /**
    * Log.
