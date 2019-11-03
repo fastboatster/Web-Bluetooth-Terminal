@@ -421,7 +421,8 @@ class BluetoothTerminal {
     var dta = [];
     for (var i = 0; i < data.length; i++) {
       dta.push(data.charCodeAt(i));
-    };
+    }
+    this._log(dta);
     // return characteristic.writeValue(new TextEncoder().encode(data));
     return characteristic.writeValue(dta);
   }
