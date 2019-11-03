@@ -36,7 +36,7 @@ const terminal = new BluetoothTerminal();
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
   const buff = data.buffer;
-  const enc = new TextDecoder('utf-8');
+  const enc = new TextDecoder('ascii');
   const str = enc.decode(buff);
   logToTerminal(str, 'in');
 };
