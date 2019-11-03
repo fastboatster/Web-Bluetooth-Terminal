@@ -393,7 +393,7 @@ class BluetoothTerminal {
    */
   _handleCharacteristicValueChanged(event) {
     print(event.target.value);
-    console.log(event.target.value);
+    this._log(event.target.value);
     const value = new TextDecoder().decode(event.target.value);
 
     for (const c of value) {
