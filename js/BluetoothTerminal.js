@@ -418,13 +418,19 @@ class BluetoothTerminal {
    * @private
    */
   _writeToCharacteristic(characteristic, data) {
-    var dta = [];
-    for (var i = 0; i < data.length; i++) {
-      dta.push(data.charCodeAt(i));
+    var buf = new ArrayBuffer(data.length * 2); // 2 bytes for each char
+    var bufView = new Uint16Array(buf);
+    for (var i = 0, strLen = str.length; i < strLen; i++) {
+      bufView[i] = data.charCodeAt(i);
     }
-    this._log(dta);
+    // return buf;
+    // var dta = [];
+    // for (var i = 0; i < data.length; i++) {
+    //   dta.push(data.charCodeAt(i));
+    // }
+    this._log(buf);
     // return characteristic.writeValue(new TextEncoder().encode(data));
-    return characteristic.writeValue(dta);
+    return characteristic.writeValue(buf);
   }
 
 
